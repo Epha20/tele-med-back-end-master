@@ -1,0 +1,27 @@
+{
+  "development": {
+  
+    "username": "postgres",
+    "password": "root",
+    "database": "tenaaddi_e-tena-express",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "Eyobed7b$13579",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+
+  "Production": {
+    "username": "postgres",
+    "password": "hKKUlFmzZ4H_dSGr",
+    "database": "postgres",
+    "host": "192.168.21.19",
+    "dialect": "postgres",
+    "port": 5432
+  }
+}
+

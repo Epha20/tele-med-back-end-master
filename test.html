@@ -1,0 +1,41 @@
+!doctype html>
+<html>
+    <head>
+        <title>Socket Test</title>
+        <script type="text/javascript" src="jquery-1.11.1.js"></script>
+        <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            $("document").ready(function() {
+                var socket = io.connect('http://localhost:8080');
+                console.log("Connected");
+                var requestId = [];
+                $('.testButton').click(function() {
+                    requestId['testButton'] = Date.now();
+                    socket.emit('weightRequest', requestId['testButton']);
+                });
+                $('#testInput').click(function() {
+                    requestId['testInput'] = Date.now();
+                    socket.emit('weightRequest', requestId['testInput']);
+                });
+                socket.on('weightResponse', function (data) {
+                    console.log(data);
+                    console.log(data.requestId + ' ' + requestId['testButton']);
+                    console.log(data.weight);
+                    if (data.requestId === requestId['testButton']) {
+                        console.log('eureka');
+                        $('#test').html('<p>' + data.weight + '</p>');
+                    } else if (data.requestId == requestId['testInput']) {
+                        $('#testInputField').val(data.weight);
+                    }
+                });
+          });
+        </script>
+    </head>
+    <body>
+        <h1>Socket Test</h1>
+        Server Response: <input id="testInputField" type="text" name="response"><br />
+        <button id="testInput" >Submit</button>
+        <div id="test"> </div>
+        <button class="testButton">Test</button>
+    </body>
+</html>

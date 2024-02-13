@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "root",
+    "database": "e-tena-express",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "root",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "tenaaddi_dagi",
+    "password": "0hq17MB.5YivI]",
+    "database": "tenaaddi_e_health_backend",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

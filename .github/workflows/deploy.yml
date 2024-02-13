@@ -1,0 +1,39 @@
+on: 
+  push:
+    branches:
+      - master
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.1
+      with:
+        server: tena-addis.com
+        username: ${{ secrets.ftp_username }}
+        password: ${{ secrets.ftp_password }}
+        server-dir: /e-tena-express/
+        local-dir: ./
+  send-telegram-message:
+    name: Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🎉 Server Update Notice 🎉
+            
+            ${{ github.actor }} just updated api.tena-addis.com:
+            
+            Change-Notes: 
+            ${{ github.event.commits[0].message }}
+
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}

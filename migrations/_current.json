@@ -1,0 +1,1274 @@
+{
+    "tables": {
+        "Appointments": {
+            "tableName": "Appointments",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "chatRoomID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "ChatRooms",
+                        "key": "id"
+                    },
+                    "field": "chatRoomID",
+                    "seqType": "Sequelize.UUID"
+                },
+                "deescription": {
+                    "allowNull": true,
+                    "field": "deescription",
+                    "seqType": "Sequelize.STRING"
+                },
+                "date": {
+                    "allowNull": false,
+                    "field": "date",
+                    "seqType": "Sequelize.DATE"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "ChatRooms": {
+            "tableName": "ChatRooms",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "patientID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Patients",
+                        "key": "id"
+                    },
+                    "field": "patientID",
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "medicalStaffID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "MedicalStaffs",
+                        "key": "id"
+                    },
+                    "field": "medicalStaffID",
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "HealthCares": {
+            "tableName": "HealthCares",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "HealthCareAdmin": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "field": "HealthCareAdmin",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "backgroundImage": {
+                    "allowNull": false,
+                    "field": "backgroundImage",
+                    "seqType": "Sequelize.STRING"
+                },
+                "logo": {
+                    "allowNull": false,
+                    "field": "logo",
+                    "seqType": "Sequelize.STRING"
+                },
+                "HealthCareName": {
+                    "allowNull": false,
+                    "field": "HealthCareName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "address": {
+                    "allowNull": false,
+                    "field": "address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phoneNumber": {
+                    "allowNull": true,
+                    "field": "phoneNumber",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "allowNull": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "website": {
+                    "allowNull": true,
+                    "field": "website",
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "allowNull": true,
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "longitude": {
+                    "allowNull": true,
+                    "field": "longitude",
+                    "seqType": "Sequelize.STRING"
+                },
+                "latitude": {
+                    "allowNull": true,
+                    "field": "latitude",
+                    "seqType": "Sequelize.STRING"
+                },
+                "openingHours": {
+                    "allowNull": true,
+                    "field": "openingHours",
+                    "seqType": "Sequelize.STRING"
+                },
+                "closingHours": {
+                    "allowNull": true,
+                    "field": "closingHours",
+                    "seqType": "Sequelize.STRING"
+                },
+                "openDays": {
+                    "allowNull": false,
+                    "field": "openDays",
+                    "seqType": "Sequelize.STRING"
+                },
+                "closeDays": {
+                    "allowNull": false,
+                    "field": "closeDays",
+                    "seqType": "Sequelize.STRING"
+                },
+                "is24Hours": {
+                    "allowNull": true,
+                    "field": "is24Hours",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isOnline": {
+                    "allowNull": true,
+                    "field": "isOnline",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isVerified": {
+                    "allowNull": true,
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isApproved": {
+                    "allowNull": true,
+                    "field": "isApproved",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isDeleted": {
+                    "allowNull": true,
+                    "field": "isDeleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isSuspended": {
+                    "allowNull": true,
+                    "field": "isSuspended",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isBlocked": {
+                    "allowNull": true,
+                    "field": "isBlocked",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "HealthRecords": {
+            "tableName": "HealthRecords",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "patientID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Patients",
+                        "key": "id"
+                    },
+                    "field": "patientID",
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "medicalStaffID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "MedicalStaffs",
+                        "key": "id"
+                    },
+                    "field": "medicalStaffID",
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "LaboratoryResultId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "LaboratoryReports",
+                        "key": "id"
+                    },
+                    "field": "LaboratoryResultId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "description": {
+                    "allowNull": false,
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "date": {
+                    "allowNull": false,
+                    "field": "date",
+                    "seqType": "Sequelize.DATE"
+                },
+                "chatRoomId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "ChatRooms",
+                        "key": "id"
+                    },
+                    "field": "chatRoomId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Laboratories": {
+            "tableName": "Laboratories",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "LaboratoryTechnician": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "MedicalStaffs",
+                        "key": "id"
+                    },
+                    "field": "LaboratoryTechnician",
+                    "seqType": "Sequelize.UUID"
+                },
+                "halthcarId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "HealthCares",
+                        "key": "id"
+                    },
+                    "field": "halthcarId",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "LaboratoryReports": {
+            "tableName": "LaboratoryReports",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "patientID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Patients",
+                        "key": "id"
+                    },
+                    "field": "patientID",
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "medicalStaffID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "MedicalStaffs",
+                        "key": "id"
+                    },
+                    "field": "medicalStaffID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryRequestId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "LaboratoryTestRquests",
+                        "key": "id"
+                    },
+                    "field": "laboratoryRequestId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryTest": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "LaboratoryTests",
+                        "key": "id"
+                    },
+                    "field": "laboratoryTest",
+                    "seqType": "Sequelize.UUID"
+                },
+                "chatRoomId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "ChatRooms",
+                        "key": "id"
+                    },
+                    "field": "chatRoomId",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Laboratories",
+                        "key": "id"
+                    },
+                    "field": "laboratoryId",
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "description": {
+                    "allowNull": false,
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "date": {
+                    "allowNull": false,
+                    "field": "date",
+                    "seqType": "Sequelize.DATE"
+                },
+                "time": {
+                    "allowNull": false,
+                    "field": "time",
+                    "seqType": "Sequelize.TIME"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "laboratoryTestId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "LaboratoryTests",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "laboratoryTestId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "LaboratoryRequests": {
+            "tableName": "LaboratoryRequests",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "senderID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Medicalstaffs",
+                        "key": "id"
+                    },
+                    "descriptionText": {
+                        "allowNull": false
+                    },
+                    "field": "senderID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "chatRoomID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "ChatRooms",
+                        "key": "id"
+                    },
+                    "field": "chatRoomID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "LaboratoryTestRquests": {
+            "tableName": "LaboratoryTestRquests",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryRequestId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "LaboratoryRequests",
+                        "key": "id"
+                    },
+                    "field": "laboratoryRequestId",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryTestId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "LaboratoryTests",
+                        "key": "id"
+                    },
+                    "field": "laboratoryTestId",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "LaboratoryTests": {
+            "tableName": "LaboratoryTests",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Laboratories",
+                        "key": "id"
+                    },
+                    "field": "laboratoryId",
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "Name": {
+                    "allowNull": false,
+                    "field": "Name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "price": {
+                    "allowNull": false,
+                    "field": "price",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "description": {
+                    "allowNull": false,
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "MedicalStaffs": {
+            "tableName": "MedicalStaffs",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "userID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "field": "userID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "workExperiance": {
+                    "field": "workExperiance",
+                    "seqType": "Sequelize.STRING"
+                },
+                "role": {
+                    "allowNull": false,
+                    "field": "role",
+                    "seqType": "Sequelize.STRING"
+                },
+                "specialization": {
+                    "allowNull": false,
+                    "field": "specialization",
+                    "seqType": "Sequelize.STRING"
+                },
+                "educationDegree": {
+                    "allowNull": false,
+                    "field": "educationDegree",
+                    "seqType": "Sequelize.STRING"
+                },
+                "healthcarAdminAUtorization": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "healthcarAdminAUtorization",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isAuthorizationField": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isAuthorizationField",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "FinalAuth": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "FinalAuth",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "fieldsToBeUpdated": {
+                    "allowNull": true,
+                    "field": "fieldsToBeUpdated",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "HealthCareID": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "HealthCares",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "HealthCareID",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Medicines": {
+            "tableName": "Medicines",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "pharmacyId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Pharmacies",
+                        "key": "id"
+                    },
+                    "field": "pharmacyId",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "name": {
+                    "allowNull": false,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "allowNull": false,
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "price": {
+                    "allowNull": false,
+                    "field": "price",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "quantity": {
+                    "allowNull": false,
+                    "field": "quantity",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "expiryDate": {
+                    "allowNull": false,
+                    "field": "expiryDate",
+                    "seqType": "Sequelize.DATE"
+                },
+                "manufacturer": {
+                    "allowNull": false,
+                    "field": "manufacturer",
+                    "seqType": "Sequelize.STRING"
+                },
+                "type": {
+                    "allowNull": false,
+                    "field": "type",
+                    "seqType": "Sequelize.STRING"
+                },
+                "sideEffects": {
+                    "allowNull": false,
+                    "field": "sideEffects",
+                    "seqType": "Sequelize.STRING"
+                },
+                "dosage": {
+                    "allowNull": false,
+                    "field": "dosage",
+                    "seqType": "Sequelize.STRING"
+                },
+                "image": {
+                    "allowNull": false,
+                    "field": "image",
+                    "seqType": "Sequelize.STRING"
+                },
+                "active": {
+                    "allowNull": false,
+                    "field": "active",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "MedicinePrescriptions": {
+            "tableName": "MedicinePrescriptions",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "senderID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "MedicalStaffs",
+                        "key": "id"
+                    },
+                    "field": "senderID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "medicineId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Medicines",
+                        "key": "id"
+                    },
+                    "field": "medicineId",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "text": {
+                    "allowNull": false,
+                    "field": "text",
+                    "seqType": "Sequelize.STRING"
+                },
+                "chatRoomID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "ChatRooms",
+                        "key": "id"
+                    },
+                    "field": "chatRoomID",
+                    "seqType": "Sequelize.UUID"
+                },
+                "type": {
+                    "allowNull": false,
+                    "field": "type",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicineName": {
+                    "allowNull": false,
+                    "field": "medicineName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicineDosage": {
+                    "allowNull": false,
+                    "field": "medicineDosage",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicineFrequency": {
+                    "allowNull": false,
+                    "field": "medicineFrequency",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicineDuration": {
+                    "allowNull": false,
+                    "field": "medicineDuration",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicineQuantity": {
+                    "allowNull": false,
+                    "field": "medicineQuantity",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicineRefill": {
+                    "allowNull": true,
+                    "field": "medicineRefill",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicineNotes": {
+                    "allowNull": false,
+                    "field": "medicineNotes",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicinePrescriptionDate": {
+                    "allowNull": false,
+                    "field": "medicinePrescriptionDate",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicinePrescriptionTime": {
+                    "allowNull": true,
+                    "field": "medicinePrescriptionTime",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicinePrescriptionExpirationDate": {
+                    "allowNull": true,
+                    "field": "medicinePrescriptionExpirationDate",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicinePrescriptionExpirationTime": {
+                    "allowNull": true,
+                    "field": "medicinePrescriptionExpirationTime",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Messages": {
+            "tableName": "Messages",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "senderID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "field": "senderID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "text": {
+                    "field": "text",
+                    "seqType": "Sequelize.STRING"
+                },
+                "type": {
+                    "allowNull": false,
+                    "field": "type",
+                    "seqType": "Sequelize.STRING"
+                },
+                "chatRoomID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "ChatRooms",
+                        "key": "id"
+                    },
+                    "field": "chatRoomID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "image": {
+                    "allowNull": true,
+                    "field": "image",
+                    "seqType": "Sequelize.STRING"
+                },
+                "medicinePrescriptionId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "MedicinePrescriptions",
+                        "key": "id"
+                    },
+                    "field": "medicinePrescriptionId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryRequestId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "LaboratoryRequests",
+                        "key": "id"
+                    },
+                    "field": "laboratoryRequestId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "laboratoryResultId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "LaboratoryReports",
+                        "key": "id"
+                    },
+                    "field": "laboratoryResultId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "appointmentId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Appointments",
+                        "key": "id"
+                    },
+                    "field": "appointmentId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Patients": {
+            "tableName": "Patients",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "bloodtype": {
+                    "field": "bloodtype",
+                    "seqType": "Sequelize.STRING"
+                },
+                "userID": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "field": "userID",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Pharmacies": {
+            "tableName": "Pharmacies",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "pharmaciest": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "MedicalStaffs",
+                        "key": "id"
+                    },
+                    "field": "pharmaciest",
+                    "seqType": "Sequelize.UUID"
+                },
+                "healthcareId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "HealthCares",
+                        "key": "id"
+                    },
+                    "field": "healthcareId",
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.UUID"
+                },
+                "address": {
+                    "allowNull": true,
+                    "field": "address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone": {
+                    "allowNull": true,
+                    "field": "phone",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "allowNull": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "longitude": {
+                    "allowNull": true,
+                    "field": "longitude",
+                    "seqType": "Sequelize.STRING"
+                },
+                "latitude": {
+                    "allowNull": true,
+                    "field": "latitude",
+                    "seqType": "Sequelize.STRING"
+                },
+                "name": {
+                    "allowNull": true,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "logo": {
+                    "allowNull": true,
+                    "field": "logo",
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "allowNull": false,
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "online": {
+                    "allowNull": false,
+                    "field": "online",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "open": {
+                    "allowNull": false,
+                    "field": "open",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "openTime": {
+                    "allowNull": false,
+                    "field": "openTime",
+                    "seqType": "Sequelize.STRING"
+                },
+                "closeTime": {
+                    "allowNull": false,
+                    "field": "closeTime",
+                    "seqType": "Sequelize.STRING"
+                },
+                "openDays": {
+                    "allowNull": false,
+                    "field": "openDays",
+                    "seqType": "Sequelize.STRING"
+                },
+                "closeDays": {
+                    "allowNull": false,
+                    "field": "closeDays",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isApproed": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isApproed",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isVerified": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "inProgress": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "inProgress",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "pharmacyTechnician": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "MedicalStaffs",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "pharmacyTechnician",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Users": {
+            "tableName": "Users",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "firstName": {
+                    "field": "firstName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "lastName": {
+                    "field": "lastName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone": {
+                    "field": "phone",
+                    "seqType": "Sequelize.STRING"
+                },
+                "image": {
+                    "field": "image",
+                    "seqType": "Sequelize.STRING"
+                },
+                "role": {
+                    "allowNull": false,
+                    "field": "role",
+                    "seqType": "Sequelize.STRING"
+                },
+                "lastOnline": {
+                    "field": "lastOnline",
+                    "seqType": "Sequelize.DATE"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "path": "C:\\Users\\eyobed.feleke\\Desktop\\TeleMed\\e-tena-express\\migrations\\_current.json",
+    "backupPath": "C:\\Users\\eyobed.feleke\\Desktop\\TeleMed\\e-tena-express\\migrations\\_current_bak.json",
+    "exists": true,
+    "revision": 1
+}

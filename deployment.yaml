@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: telemed
+  name: telemed
+  annotations:
+    prometheus.io/port: '9090'
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: '/actuator/prometheus'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telemed
+  template:
+    metadata:
+      labels:
+        app: telemed
+    spec:
+      containers:
+        - image: registry.tools.blueprint.lab/bigdata/tele-med:0.0.1
+          imagePullPolicy: Always
+          name: telemed
+          ports:
+            - containerPort: 6060
+              protocol: TCP
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: statementsTable
+              value: MPESA_STATEMENTS
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
+            requests:
+              cpu: 250m
+              memory: 500Mi
+      imagePullSecrets:
+        - name: regcred
+      serviceAccount: bigdata
+      serviceAccountName: bigdata
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telemed
+  annotations:
+    prometheus.io/port: '9090'
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: '/actuator/prometheus'
+spec:
+  type: ClusterIP
+  ports:
+    - name: server-port
+      port: 6060
+      targetPort: 6060
+      protocol: TCP
+    - name: monitoring-port
+      port: 3000
+      targetPort: 300
+      protocol: TCP
+  selector:
+    app: telemed
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+  labels:
+    name: telemed
+  name: telemed
+spec:
+  rules:
+    - host: tele-med-api.bigdata.blueprint.lab
+      http:
+        paths:
+          - backend:
+              service:
+                name: telemed
+                port:
+                  number: 6060
+            path: /
+            pathType: ImplementationSpecific
+
+# ---
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: telemed-monitor
+#   labels:
+#     release: bigdata-prometheus
+# spec:
+#   selector:
+#     matchLabels:
+#       app: telemed
+#   endpoints:
+#     - port: monitoring-port
+#       path: "/actuator/prometheus"
+#   namespaceSelector:
+#     matchNames:
+#       - et02-tkg-bigdata-prod
